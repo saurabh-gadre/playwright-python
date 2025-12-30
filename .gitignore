@@ -1,1 +1,4 @@
-.idea
+# IDE settings
+.idea/
+.vscode/
+report.html
