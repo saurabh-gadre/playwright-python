@@ -1,5 +1,6 @@
 # IDE settings
 .idea/
 .vscode/
-/report.html
-/demoblaze-tests/utils/secrets_mgr.py
+report.html
+demoblaze-tests/utils/secrets_mgr.py
+*.env

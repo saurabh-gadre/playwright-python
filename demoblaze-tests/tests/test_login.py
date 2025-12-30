@@ -5,12 +5,7 @@ import pytest
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
 
-try:
-    PASSWORD = os.environ["PASSWORD"]
-except KeyError:
-    from utils import secrets_mgr
-    PASSWORD = secrets_mgr.PASSWORD
-
+PASSWORD = os.environ["PASSWORD"]
 
 
 def handle_dialog(dialog):
