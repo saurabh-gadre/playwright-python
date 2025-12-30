@@ -1,17 +1,19 @@
 import pytest
+
+from pages.cart_page import CartPage
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
-from pages.cart_page import CartPage
 
 
 @pytest.fixture(scope="function")
-def get_test_data():    
+def get_test_data():
     return {
         "product_category": "Laptops",
         "product_name": "Sony vaio i5",
         "product_price": "790"
     }
+
 
 def initialize_pages(setup):
     page = setup
@@ -23,7 +25,7 @@ def initialize_pages(setup):
 
 
 def test_add_product_to_cart(setup, get_user_credentials, get_test_data):
-    home_page, login_page, product_page, cart_page = initialize_pages(setup) 
+    home_page, login_page, product_page, cart_page = initialize_pages(setup)
 
     # Navigate to home page
     home_page.goto("https://www.demoblaze.com")
@@ -52,7 +54,7 @@ def test_add_product_to_cart(setup, get_user_credentials, get_test_data):
 
 
 def test_delete_product_to_cart(setup, get_user_credentials):
-    home_page, login_page, product_page, cart_page = initialize_pages(setup) 
+    home_page, login_page, product_page, cart_page = initialize_pages(setup)
 
     # Navigate to home page
     home_page.goto("https://www.demoblaze.com")

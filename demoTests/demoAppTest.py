@@ -1,14 +1,16 @@
 import re
-from playwright.sync_api import sync_playwright, expect
+
 import pytest
+from playwright.sync_api import sync_playwright, expect
 
 
 def init(p: sync_playwright = None):
     print("Demo App Test Initialized")
-    browser = p.chromium.launch(headless=False,slow_mo=500)
+    browser = p.chromium.launch(headless=False, slow_mo=500)
     context = browser.new_context()
     page = context.new_page()
     return browser, page
+
 
 @pytest.mark.skip
 def test_page_title():
@@ -20,7 +22,7 @@ def test_page_title():
         browser.close()
 
 
-@pytest.mark.parametrize("user",['Harry Potter','Hermoine Granger','Ron Weasly'])
+@pytest.mark.parametrize("user", ['Harry Potter', 'Hermoine Granger', 'Ron Weasly'])
 def test_login_with_user(user: str):
     with sync_playwright() as p:
         browser, page = init(p)
@@ -29,7 +31,7 @@ def test_login_with_user(user: str):
         customers_btn.click()
         user_dropdown = page.locator('select#userSelect')
         user_dropdown.select_option(label=user)
-        login_btn = page.get_by_role('button',name=re.compile('Login',re.IGNORECASE))
+        login_btn = page.get_by_role('button', name=re.compile('Login', re.IGNORECASE))
         expect(login_btn).to_be_visible(timeout=3000)
         login_btn.click()
 
