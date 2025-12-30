@@ -4,7 +4,13 @@ import pytest
 
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
-# from utils import secrets_mgr
+
+try:
+    PASSWORD = os.environ["PASSWORD"]
+except KeyError:
+    from utils import secrets_mgr
+    PASSWORD = secrets_mgr.PASSWORD
+
 
 
 def handle_dialog(dialog):
@@ -33,7 +39,7 @@ def test_login_with_invalid_credentials(setup, username, password):
 @pytest.mark.smoke
 @pytest.mark.parametrize('username,password', [
     pytest.param('adminuzer', 'admin123', marks=pytest.mark.xfail),
-    pytest.param('demouser', 'admin123', marks=pytest.mark.xfail), ('admin', os.environ["PASSWORD"])])
+    pytest.param('demouser', 'admin123', marks=pytest.mark.xfail), ('admin', PASSWORD)])
 def test_login_with_different_credentials(setup, username, password):
     page = setup
     home_page = HomePage(page)

@@ -3,7 +3,11 @@ import os
 import pytest
 from playwright.sync_api import sync_playwright
 
-# from utils import secrets_mgr
+try:
+    PASSWORD = os.environ["PASSWORD"]
+except KeyError:
+    from utils import secrets_mgr
+    PASSWORD = secrets_mgr.PASSWORD
 
 
 @pytest.fixture(scope='session')
@@ -31,5 +35,5 @@ def setup(page):
 def get_user_credentials():
     return {
         "username": "admin",
-        "password": os.environ["PASSWORD"]
+        "password": PASSWORD
     }
