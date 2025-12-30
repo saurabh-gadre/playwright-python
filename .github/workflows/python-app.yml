@@ -41,4 +41,4 @@ jobs:
       env:
         PASSWORD: ${{secrets.PASSWORD}}
       run: |
-        pytest --template=html1/index.html --report=report.html
+        pytest -v -s --template=html1/index.html --report=report.html
